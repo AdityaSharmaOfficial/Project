@@ -1,21 +1,34 @@
-# Number Guessing Game in C
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-This is a simple C program that implements a **number guessing game**. Here's how it works:
-
-1. The program generates a random number between **1 and 100**.
-2. The user guesses the number through a series of inputs.
-3. The program provides hints based on the user's guesses:
-   - **Too High**: The guess is higher than the random number.
-   - **Too Low**: The guess is lower than the random number.
-   - **Close Guess**: Encouraging hints for guesses closer to the random number.
-4. The program keeps track of the number of tries and congratulates the user upon a correct guess.
-
-### How to Play
-- Compile and run the program.
-- Enter guesses as prompted until the correct number is guessed.
-- Enjoy the fun hints provided for each guess!
-
----
-
-**Example Output:**
-Guess the number: 50 Oops, you guessed it too low a guess high 75 You guessed a little too high, Nice try though!!! 67 Congratulations you guessed the number in 3 tries
+int main() {
+    int guessed,no_of_tries=0;
+    // Seed the random number generator with the current time
+    srand(time(0));
+    // Generate a random number between 1 and 100
+    int randomNumber = (rand() % 100) + 1; //A random number between 1 to 100 is stored in the variable randomNumber
+   
+    printf("\n Guess the number\n");
+    do
+    {
+       scanf("%d",&guessed);
+       no_of_tries++;
+       if(guessed>randomNumber)
+       {
+        if(guessed-10>randomNumber)
+        printf("Oops, you guessed it too high a guess lower\n");
+        else
+        printf("You guessed a little too high, Nice try though!!!\n");
+       }
+       else
+       {
+        if(guessed<randomNumber-10)
+        printf("Oops, you guessed it too low a guess high\n");
+        else
+        printf("You guessed a little too low, Nice try though!!!\n");
+       }
+    } while(guessed!=randomNumber);
+    printf("Congratulations you guessed the number in %d tries \n",no_of_tries);
+    return 0;
+}
